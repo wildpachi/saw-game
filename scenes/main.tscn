@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://citkeac12b4qf"]
+[gd_scene load_steps=3 format=3 uid="uid://citkeac12b4qf"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_i0v2x"]
-[ext_resource type="Script" path="res://scenes/slots.gd" id="2_qx1w7"]
-[ext_resource type="Script" path="res://scenes/pieces.gd" id="3_rye37"]
+[ext_resource type="Script" path="res://scenes/puzzle.gd" id="4_xbcrq"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_i0v2x")
@@ -12,10 +11,30 @@ unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="SlotSpawn" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_qx1w7")
+[node name="Puzzle" type="Node" parent="."]
+script = ExtResource("4_xbcrq")
 
-[node name="PieceSpawn" type="Node2D" parent="."]
+[node name="PuzzleTexture" type="TextureRect" parent="Puzzle"]
 unique_name_in_owner = true
-script = ExtResource("3_rye37")
+visible = false
+custom_minimum_size = Vector2(1600, 900)
+offset_right = 864.0
+offset_bottom = 1080.0
+
+[node name="PuzzleSize" type="Label" parent="Puzzle"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="PuzzleSpawnLocation" type="Control" parent="Puzzle"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2

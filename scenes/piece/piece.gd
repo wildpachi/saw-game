@@ -26,7 +26,8 @@ func _process(delta):
 				selected = true
 				z_index = 100
 			if Input.is_action_pressed("mouse_click"):
-				global_position = get_global_mouse_position() - mousePos
+				if mousePos:
+					global_position = get_global_mouse_position() - mousePos
 			elif Input.is_action_just_released("mouse_click"):
 				Global.is_dragging = false
 				selected = false
