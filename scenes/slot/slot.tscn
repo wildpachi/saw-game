@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6x1mbm5e5lh3"]
+
+[ext_resource type="Script" path="res://scenes/slot/slot.gd" id="1_xjmtv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avmcf"]
+size = Vector2(5, 5)
+
+[node name="Slot" type="StaticBody2D" groups=["holes"]]
+position = Vector2(621, 179)
+script = ExtResource("1_xjmtv")
+value = 1
+metadata/_edit_group_ = true
+
+[node name="SlotColor" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SlotLabel" type="Label" parent="SlotColor"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlotCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_avmcf")

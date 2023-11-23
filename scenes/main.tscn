@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://citkeac12b4qf"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_i0v2x"]
+[ext_resource type="Script" path="res://scenes/slots.gd" id="2_qx1w7"]
+[ext_resource type="Script" path="res://scenes/pieces.gd" id="3_rye37"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_i0v2x")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SlotSpawn" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_qx1w7")
+
+[node name="PieceSpawn" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_rye37")
