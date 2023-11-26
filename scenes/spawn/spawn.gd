@@ -34,7 +34,7 @@ func _ready():
 			var x = fmod(i, columns)
 			var y = i / columns
 			
-			child.value = locations[i] if shuffle else i
+			child.index = locations[i] if shuffle else i
 			child.position = Vector2(((size + spread.x) * x) + offsetH, ((size + spread.y) * y) + offsetV)
 			self.add_child(child)
 

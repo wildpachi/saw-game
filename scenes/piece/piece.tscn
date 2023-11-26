@@ -6,7 +6,7 @@
 size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_notq3"]
-size = Vector2(10, 10)
+size = Vector2(5, 5)
 
 [node name="Piece" type="Node2D"]
 script = ExtResource("1_ijl5f")
@@ -52,7 +52,13 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PickupTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
 [connection signal="mouse_entered" from="MouseArea" to="." method="_on_mouse_area_mouse_entered"]
 [connection signal="mouse_exited" from="MouseArea" to="." method="_on_mouse_area_mouse_exited"]
 [connection signal="body_entered" from="SnapArea" to="." method="_on_snap_area_body_entered"]
 [connection signal="body_exited" from="SnapArea" to="." method="_on_snap_area_body_exited"]
+[connection signal="timeout" from="PickupTimer" to="." method="_on_pickup_timer_timeout"]
