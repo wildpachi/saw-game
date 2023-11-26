@@ -1,6 +1,9 @@
 extends Node
+class_name Puzzle
 
-var pieceSize = 200
+@export var SourceImage : Image
+
+var pieceSize = 120
 var piecesX : int
 var piecesY : int
 
@@ -9,9 +12,12 @@ var puzzleHeight : int = 900
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if %PuzzleTexture.texture:
-		puzzleWidth = %PuzzleTexture.texture.get_width()
-		puzzleHeight = %PuzzleTexture.texture.get_height()
+	SourceImage = Image.new()
+	SourceImage.load("res://assets/test-image.jpg")
+	
+	if SourceImage:
+		puzzleWidth = SourceImage.get_width()
+		puzzleHeight = SourceImage.get_height()
 	
 	piecesX = puzzleWidth / pieceSize
 	piecesY = puzzleHeight / pieceSize

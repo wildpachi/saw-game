@@ -1,14 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6crtkevy70w5"]
+[gd_scene load_steps=3 format=3 uid="uid://c6crtkevy70w5"]
 
 [ext_resource type="Script" path="res://scenes/piece/piece.gd" id="1_ijl5f"]
+[ext_resource type="PackedScene" uid="uid://byqq54tyfk0xv" path="res://scenes/piece/movement.tscn" id="2_p32ui"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifpyx"]
-size = Vector2(64, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_notq3"]
-size = Vector2(5, 5)
-
-[node name="Piece" type="Node2D"]
+[node name="Piece" type="Node2D" groups=["pieces"]]
+z_index = 1
 script = ExtResource("1_ijl5f")
 
 [node name="PieceColor" type="ColorRect" parent="."]
@@ -26,16 +22,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.129412, 0.552941, 1, 1)
 
-[node name="MouseArea" type="Area2D" parent="."]
-
-[node name="MouseCollision" type="CollisionShape2D" parent="MouseArea"]
-shape = SubResource("RectangleShape2D_ifpyx")
-
-[node name="SnapArea" type="Area2D" parent="."]
-
-[node name="SnapCollision" type="CollisionShape2D" parent="SnapArea"]
-shape = SubResource("RectangleShape2D_notq3")
-
 [node name="PieceLabel" type="Label" parent="."]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -52,13 +38,7 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PickupTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.1
-one_shot = true
+[node name="Movement" parent="." node_paths=PackedStringArray("piece_body") instance=ExtResource("2_p32ui")]
+piece_body = NodePath("..")
 
-[connection signal="mouse_entered" from="MouseArea" to="." method="_on_mouse_area_mouse_entered"]
-[connection signal="mouse_exited" from="MouseArea" to="." method="_on_mouse_area_mouse_exited"]
-[connection signal="body_entered" from="SnapArea" to="." method="_on_snap_area_body_entered"]
-[connection signal="body_exited" from="SnapArea" to="." method="_on_snap_area_body_exited"]
-[connection signal="timeout" from="PickupTimer" to="." method="_on_pickup_timer_timeout"]
+[connection signal="score_point" from="Movement" to="." method="_on_movement_score_point"]

@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pamj3"]
 size = Vector2(5, 5)
 
-[node name="Slot" type="StaticBody2D" groups=["holes"]]
+[node name="Slot" type="StaticBody2D" groups=["slots"]]
 position = Vector2(621, 179)
 script = ExtResource("1_xjmtv")
 metadata/_edit_group_ = true

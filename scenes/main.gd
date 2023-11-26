@@ -6,7 +6,7 @@ var score = 0
 func _ready():
 	var p = get_tree().get_nodes_in_group("pieces")
 	for i in p:
-		i.connect("correct", Callable(self, "inc_score"))
+		i.connect("score_point", Callable(self, "inc_score"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

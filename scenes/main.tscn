@@ -14,13 +14,6 @@ offset_bottom = 23.0
 [node name="Puzzle" type="Node" parent="."]
 script = ExtResource("4_xbcrq")
 
-[node name="PuzzleTexture" type="TextureRect" parent="Puzzle"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(1600, 900)
-offset_right = 864.0
-offset_bottom = 1080.0
-
 [node name="PuzzleSize" type="Label" parent="Puzzle"]
 anchors_preset = 1
 anchor_left = 1.0

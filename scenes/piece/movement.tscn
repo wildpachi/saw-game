@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://byqq54tyfk0xv"]
+
+[ext_resource type="Script" path="res://scenes/piece/movement.gd" id="1_lduxj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifpyx"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_notq3"]
+size = Vector2(5, 5)
+
+[node name="Movement" type="Node2D"]
+script = ExtResource("1_lduxj")
+
+[node name="MouseArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="MouseCollision" type="CollisionShape2D" parent="MouseArea"]
+shape = SubResource("RectangleShape2D_ifpyx")
+
+[node name="SnapArea" type="Area2D" parent="."]
+
+[node name="SnapCollision" type="CollisionShape2D" parent="SnapArea"]
+shape = SubResource("RectangleShape2D_notq3")
+
+[node name="PickupTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[connection signal="mouse_entered" from="MouseArea" to="." method="_on_mouse_area_mouse_entered"]
+[connection signal="mouse_exited" from="MouseArea" to="." method="_on_mouse_area_mouse_exited"]
+[connection signal="body_entered" from="SnapArea" to="." method="_on_snap_area_body_entered"]
+[connection signal="body_exited" from="SnapArea" to="." method="_on_snap_area_body_exited"]
+[connection signal="timeout" from="PickupTimer" to="." method="_on_pickup_timer_timeout"]

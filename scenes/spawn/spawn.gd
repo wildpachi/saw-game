@@ -19,7 +19,7 @@ func _ready():
 		Global.SpawnType.PIECE:
 			scene = preload("res://scenes/piece/piece.tscn")
 			shuffle = true
-			spread = Vector2(50, 25)
+			spread = Vector2(-25, -10)
 	
 	if scene:
 		var locations = range(0, rows*columns,1)
