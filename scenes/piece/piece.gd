@@ -1,14 +1,15 @@
 extends Node2D
-class_name Piece
+class_name PuzzlePiece
 
 signal score_point()
 
 @export var index : int
-@export var image : Image
+@export var puzzle_image : Image
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	%PieceLabel.text = str(index)
+	%PieceTexture.texture = ImageTexture.create_from_image(puzzle_image)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
@@ -32,8 +33,6 @@ func init_movement():
 func spawn_set_location(spawn_area : Rect2i):
 	pass # Pick a random location within given rectangle
 
-func spawn_set_image():
-	pass # Crop image based on piece index
-
+		
 func _on_movement_score_point():
 	score_point.emit()

@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://citkeac12b4qf"]
+[gd_scene load_steps=5 format=3 uid="uid://citkeac12b4qf"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_i0v2x"]
+[ext_resource type="Script" path="res://scenes/spawn/spawn.gd" id="3_hf4dk"]
+[ext_resource type="Script" path="res://scenes/canvas.gd" id="3_r1yx1"]
 [ext_resource type="Script" path="res://scenes/puzzle.gd" id="4_xbcrq"]
 
 [node name="Main" type="Node"]
@@ -22,7 +24,14 @@ offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
 
-[node name="PuzzleSpawnLocation" type="Control" parent="Puzzle"]
+[node name="PuzzleCanvas" type="Control" parent="Puzzle"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_r1yx1")
+
+[node name="PuzzleSpawn" type="Control" parent="Puzzle"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,3 +40,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="SlotSpawn" type="Node2D" parent="Puzzle/PuzzleSpawn" node_paths=PackedStringArray("canvas")]
+script = ExtResource("3_hf4dk")
+canvas = NodePath("../../PuzzleCanvas")
+
+[node name="PieceSpawn" type="Node2D" parent="Puzzle/PuzzleSpawn" node_paths=PackedStringArray("canvas")]
+script = ExtResource("3_hf4dk")
+type = 1
+canvas = NodePath("../../PuzzleCanvas")

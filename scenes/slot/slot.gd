@@ -1,5 +1,5 @@
 extends StaticBody2D
-class_name Slot
+class_name PuzzleSlot
 
 @export var index: int
 

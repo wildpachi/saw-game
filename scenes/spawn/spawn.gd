@@ -1,10 +1,8 @@
 extends Node2D
+class_name PuzzleSpawn
 
-@export var type : int
-@export var rows : int = 3
-@export var columns : int = 3
-
-@export var size : int = 72
+@export var type : Global.SpawnType
+@export var canvas : PuzzleCanvas
 
 var spread : Vector2 = Vector2(0,0)
 var scene : PackedScene = null
@@ -19,23 +17,26 @@ func _ready():
 		Global.SpawnType.PIECE:
 			scene = preload("res://scenes/piece/piece.tscn")
 			shuffle = true
-			spread = Vector2(-25, -10)
+			spread = Vector2(25, 10)
 	
 	if scene:
-		var locations = range(0, rows*columns,1)
+		var locations = range(0, canvas.piece_count,1)
 		randomize()
 		locations.shuffle()
 		
-		var offsetH = -int((size + spread.x) * float(columns / 2))
-		var offsetV = -int((size + spread.y) * float(rows / 2))
+		var offsetH = -int((canvas.piece_size + spread.x) * float(canvas.piece_count_col / 2))
+		var offsetV = -int((canvas.piece_size + spread.y) * float(canvas.piece_count_row / 2))
 			
-		for i in range(0,rows*columns,1):
-			var child = scene.instantiate()
-			var x = fmod(i, columns)
-			var y = i / columns
+		for i in range(0,canvas.piece_count,1):
+			var child = scene.instantiate()			
+			var index = locations[i] if shuffle else i
+			child.index = index
+			child.position = canvas.get_start_location_at_index(i,0) - Vector2i(canvas.puzzle_width_adj/2, canvas.puzzle_height_adj/2)
 			
-			child.index = locations[i] if shuffle else i
-			child.position = Vector2(((size + spread.x) * x) + offsetH, ((size + spread.y) * y) + offsetV)
+			if type == Global.SpawnType.PIECE:
+				child.puzzle_image = canvas.get_image_at_index(index, 0)
+				child.position = canvas.get_random_global_location_in_rect(get_viewport().get_visible_rect()) - Vector2i(canvas.puzzle_width_adj/1.5, canvas.puzzle_height_adj/1.5)
+			
 			self.add_child(child)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

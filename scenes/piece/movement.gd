@@ -1,5 +1,5 @@
 extends Node2D
-class_name MoveController
+class_name PieceMover
 
 signal score_point()
 
@@ -17,7 +17,8 @@ var mouse_position : Vector2 = Vector2.ZERO
 var collision_body : Node2D = null
 
 func _ready():
-	index = piece_body.index
+	if piece_body:
+		index = piece_body.index
 
 func _process(delta):
 	if not Global.is_dragging:
@@ -37,7 +38,7 @@ func drop():
 	is_picked_up = false
 	Global.is_dragging = false
 	if can_snap:
-		if collision_body is Slot:
+		if collision_body is PuzzleSlot:
 			drop_snap()
 			drop_score()
 
@@ -62,7 +63,7 @@ func _on_mouse_area_mouse_exited():
 		can_drag = false
 
 func _on_snap_area_body_entered(body):
-	if body is Slot:
+	if body is PuzzleSlot:
 		if body.is_in_group('slots'):
 			if body.index == index:
 				can_snap = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6crtkevy70w5"]
 
 [ext_resource type="Script" path="res://scenes/piece/piece.gd" id="1_ijl5f"]
-[ext_resource type="PackedScene" uid="uid://byqq54tyfk0xv" path="res://scenes/piece/movement.tscn" id="2_p32ui"]
+[ext_resource type="PackedScene" uid="uid://1fpkgtvy4enu" path="res://scenes/piece/movement.tscn" id="2_p32ui"]
 
 [node name="Piece" type="Node2D" groups=["pieces"]]
 z_index = 1
@@ -21,6 +21,15 @@ offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.129412, 0.552941, 1, 1)
+
+[node name="PieceTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 72)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PieceLabel" type="Label" parent="."]
 unique_name_in_owner = true
